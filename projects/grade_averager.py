@@ -10,8 +10,9 @@ class_six = float(input("Class 6 grade: "))
 class_seven = float(input("Class 7 grade: "))
 
 average = round(((class_one + class_two + class_three + class_four + class_five + class_seven)/7),2)
-if average >= 92.00:
-    print("Your average is", average,"so you have an A average.")
+print("Your average is", average)
+
+
 
 
 
