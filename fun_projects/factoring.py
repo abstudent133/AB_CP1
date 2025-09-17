@@ -1,0 +1,1 @@
+number = input("Give me a number you would like to factor:")
