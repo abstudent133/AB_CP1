@@ -11,13 +11,13 @@ def start_game():
     while not game_over:
         guess = int(input("Enter your guess: "))
         attempt += 1
-        # You need to add something to the attempts
-        # This needed to be an integer because it can't compare to a string (logic)
+        # You need to add something to the attempts(runtime)
+        # This needed to be an integer because it can't compare to a string(logic)
         if attempts >= max_attempts:
             print(f"Sorry, you've used all {max_attempts} attempts. The number was {number_to_guess}.")
             game_over = True
         elif guess == number_to_guess:
-            #You can't have 2 if statement (logic)
+            #You can't have 2 if statement(logic)
             print("Congratulations! You've guessed the number!")
             game_over = True
         elif guess > number_to_guess:
