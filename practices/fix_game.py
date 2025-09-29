@@ -24,6 +24,6 @@ def start_game():
             print("Too high! Try again.")
         elif guess < number_to_guess:
             print("Too low! Try again.")  
-            continue
+            #This code is redundent and doesn't do anything(logic)
     print("Game Over. Thanks for playing!")
 start_game()
