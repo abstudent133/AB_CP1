@@ -1,7 +1,7 @@
 #AB 1st Shopping List Manager
-
-print("This is a shopping list program that allows you to add to(1),remove from(2), or show(3) your shopping list. If you would like to exit the site please enter 4.")
 shopping_list = []
+print("This is a shopping list program that allows you to add to(1),remove from(2), or show(3) your shopping list. If you would like to exit the site please enter 4.")
+
 while True:
     choice = int(input("Please input the number next to the action you want to complete(1, 2, 3, or 4): "))
     if not choice == 1 and not choice == 2 and not choice == 3 and not choice == 4:
@@ -12,7 +12,8 @@ while True:
         print(shopping_list)
     elif choice == 2:
         print(shopping_list)
-        remove = input("Please input the item you would like to remove")
+        remove = int(input("Please input the number of the  you would like to remove(note:the counting starts at 0):"))
+        shopping_list.pop(remove)
         print("This is your shopping list now:")
         print(shopping_list)
     elif choice == 3:
