@@ -1,0 +1,11 @@
+AB 1st Tick Tack Toe Pseudocode
+
+Tell the user what the game is and how it works
+    show this is the game of tick tack toe 
+    show you play by playing in one of the 9 spots on the board below
+        show board 
+        each spot on the board has a number 1 to 9 from left to right and top to bottom
+    show you win by getting 3 in a row in any direction note: they have to be in a straight line in a row, column or diagonally
+    show they are x then start
+
+loop the turns until someone gets 3 in a row
