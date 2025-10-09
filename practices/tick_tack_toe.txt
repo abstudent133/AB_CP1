@@ -8,4 +8,31 @@ Tell the user what the game is and how it works
     show you win by getting 3 in a row in any direction note: they have to be in a straight line in a row, column or diagonally
     show they are x then start
 
-loop the turns until someone gets 3 in a row
+spot one is 1
+spot two is 2
+spot three is 3
+spot four is 4
+spot five is 5
+spot six is 6
+spot seven is 7
+spot eight is 8
+spot nine is 9
+
+loop the turns while true
+    ask what spot they want to chose
+    show new board
+     _spot one| _spot two|spot three_
+     _ spot four|_spot five|spot six_
+     _spot seven|_spot eight|spot nine_
+
+    if choosen spot has x or o 
+        show choose again this spot is already taken
+        continue
+    if chose spot one
+        spot one is x
+        computer chose random spot from availible spaces
+        put an o in that spot
+        continue
+    if choose spot two
+        spot
+
