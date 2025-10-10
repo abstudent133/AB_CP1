@@ -6,7 +6,7 @@ Tell the user what the game is and how it works
         show board 
         each spot on the board has a number 1 to 9 from left to right and top to bottom
     show you win by getting 3 in a row in any direction note: they have to be in a straight line in a row, column or diagonally
-    show they are x then start
+    show they are X then start
 
 spot one is 1
 spot two is 2
@@ -19,20 +19,499 @@ spot eight is 8
 spot nine is 9
 
 loop the turns while true
-    ask what spot they want to chose
+    if spot one is X and spot two is X and spot three is X 
+        show you win
+        end game
+    or else spot one is O and spot two is O and spot three is O 
+        show you lose
+        end game
+    or else spot four is X and spot five is X and spot six is X
+        show you win
+        end game 
+    or else spot four is O and spot five is O and spot six is O 
+        show you lose
+        end game
+    or else spot seven is X and spot eight is X and spot nine is X
+        show you win
+        end game
+    or else spot seven is O and spot eight is O and spot nine is O
+        show you lose
+        end game
+    or else spot one is X and spot four is X and spot seven is X 
+        show you win
+        end game
+    or else spot one is O and spot four is O and spot seven is O 
+        show you lose
+        end game
+    or else spot two is X and spot five is X and spot eight is X 
+        show you win
+        end game
+    or else spot two is O and spot five is O and spot eight is O 
+        show you lose
+        end game
+    or else spot three is X and spot six is X and spot nine is X 
+        show you win
+        end game
+    or else spot three is O and spot six is O and spot nine is O
+        show you lose
+        end game
+    or else spot one is X and spot five is X and spot nine is X 
+        show you win
+        end game
+    or else spot one is O and spot five is O and spot nine is O 
+        show you lose
+        end game
+    or else spot three is X and spot five is X and spot seven is X 
+        show you win
+        end game
+    or else spot three is O and spot five is O and spot seven is O 
+        show you win
+        end game
+    
+    choice is what spot they want to chose(number 1-9 based on availible spaces)
     show new board
      _spot one| _spot two|spot three_
      _ spot four|_spot five|spot six_
      _spot seven|_spot eight|spot nine_
-
-    if choosen spot has x or o 
-        show choose again this spot is already taken
-        continue
-    if chose spot one
-        spot one is x
-        computer chose random spot from availible spaces
-        put an o in that spot
-        continue
-    if choose spot two
-        spot
+    
+    if choice spot one
+        spot one is X
+        while true
+        computer choice random number between 1 and 9
+        if computer choice 1 and spot one is X or spot is O
+            continue
+        or else computer choice 2 and spot two is X or O 
+            continue
+        or else computer choice  3 and spot three is X or O 
+            continue
+        or else computer choice 4 and spot four is X or O 
+            continue
+        or else computer choice 5 and spot five is X or O 
+            continue
+        or else computer choice 6 and spot six is X or O 
+            continue
+        or else computer choice 7 and spot seven is X or O 
+            continue
+        or else computer choice 8 and spot eight is X or O 
+            continue
+        or else computer choice 9 and spot nine is X or O 
+            continue
+        or else computer choice 2
+            spot two is O
+            show computer choice spot two
+        or else computer choice 3
+            spot three is O
+            show computer choice spot three
+        or else computer choice 4
+            spot four is of
+            show computer choice spot four
+        or else computer choice 5
+            spot five is O
+            show computer choice spot five
+        or else computer choice 6
+            spot six is O 
+            show computer choice spot six
+        or else computer choice 7
+            spot seven is O
+            show computer choice spot seven
+        or else computer choice 8
+            spot eight is O
+            show computer choice spot eight
+        or else computer choice 9
+            spot nine is O
+            show computer choice spot eight
+    or else choice is 2
+        spot two is X 
+        while true
+        computer choice random number between 1 and 9
+        if computer choice 1 and spot one is X or spot is O
+            continue
+        or else computer choice 2 and spot two is X or O 
+            continue
+        or else computer choice  3 and spot three is X or O 
+            continue
+        or else computer choice 4 and spot four is X or O 
+            continue
+        or else computer choice 5 and spot five is X or O 
+            continue
+        or else computer choice 6 and spot six is X or O 
+            continue
+        or else computer choice 7 and spot seven is X or O 
+            continue
+        or else computer choice 8 and spot eight is X or O 
+            continue
+        or else computer choice 9 and spot nine is X or O 
+            continue
+        or else computer choice  is 1
+            spot one is O 
+            show computer choice is spot one
+        or else computer choice is 2
+            spot two is O
+            show computer choice spot two
+        or else computer choice is 3
+            spot three is O
+            show computer choice spot three
+        or else computer choice is 4
+            spot four is of
+            show computer choice spot four
+        or else computer choice is 5
+            spot five is O
+            show computer choice spot five
+        or else computer choice is 6
+            spot six is O 
+            show computer choice spot six
+        or else computer choice is 7
+            spot seven is O
+            show computer choice spot seven
+        or else computer choice is 8
+            spot eight is O
+            show computer choice spot eight
+        or else computer choice is 9
+            spot nine is O
+            show computer choice spot nine
+    or else choice is 3
+        spot three is X 
+        while true
+        computer choice random number between 1 and 9
+        if computer choice 1 and spot one is X or spot is O
+            continue
+        or else computer choice 2 and spot two is X or O 
+            continue
+        or else computer choice  3 and spot three is X or O 
+            continue
+        or else computer choice 4 and spot four is X or O 
+            continue
+        or else computer choice 5 and spot five is X or O 
+            continue
+        or else computer choice 6 and spot six is X or O 
+            continue
+        or else computer choice 7 and spot seven is X or O 
+            continue
+        or else computer choice 8 and spot eight is X or O 
+            continue
+        or else computer choice 9 and spot nine is X or O 
+            continue
+        or else computer choice  is 1
+            spot one is O 
+            show computer choice is spot one
+        or else computer choice is 2
+            spot two is O
+            show computer choice spot two
+        or else computer choice is 3
+            spot three is O
+            show computer choice spot three
+        or else computer choice is 4
+            spot four is of
+            show computer choice spot four
+        or else computer choice is 5
+            spot five is O
+            show computer choice spot five
+        or else computer choice is 6
+            spot six is O 
+            show computer choice spot six
+        or else computer choice is 7
+            spot seven is O
+            show computer choice spot seven
+        or else computer choice is 8
+            spot eight is O
+            show computer choice spot eight
+        or else computer choice is 9
+            spot nine is O
+            show computer choice spot nine
+    or else choice is 4
+        spot four is X 
+        while true
+        computer choice random number between 1 and 9
+        if computer choice 1 and spot one is X or spot is O
+            continue
+        or else computer choice 2 and spot two is X or O 
+            continue
+        or else computer choice  3 and spot three is X or O 
+            continue
+        or else computer choice 4 and spot four is X or O 
+            continue
+        or else computer choice 5 and spot five is X or O 
+            continue
+        or else computer choice 6 and spot six is X or O 
+            continue
+        or else computer choice 7 and spot seven is X or O 
+            continue
+        or else computer choice 8 and spot eight is X or O 
+            continue
+        or else computer choice 9 and spot nine is X or O 
+            continue
+        or else computer choice  is 1
+            spot one is O 
+            show computer choice is spot one
+        or else computer choice is 2
+            spot two is O
+            show computer choice spot two
+        or else computer choice is 3
+            spot three is O
+            show computer choice spot three
+        or else computer choice is 4
+            spot four is of
+            show computer choice spot four
+        or else computer choice is 5
+            spot five is O
+            show computer choice spot five
+        or else computer choice is 6
+            spot six is O 
+            show computer choice spot six
+        or else computer choice is 7
+            spot seven is O
+            show computer choice spot seven
+        or else computer choice is 8
+            spot eight is O
+            show computer choice spot eight
+        or else computer choice is 9
+            spot nine is O
+            show computer choice spot nine
+    or else choice is 5
+        spot 5 is X 
+        while true
+        computer choice random number between 1 and 9
+        if computer choice 1 and spot one is X or spot is O
+            continue
+        or else computer choice 2 and spot two is X or O 
+            continue
+        or else computer choice  3 and spot three is X or O 
+            continue
+        or else computer choice 4 and spot four is X or O 
+            continue
+        or else computer choice 5 and spot five is X or O 
+            continue
+        or else computer choice 6 and spot six is X or O 
+            continue
+        or else computer choice 7 and spot seven is X or O 
+            continue
+        or else computer choice 8 and spot eight is X or O 
+            continue
+        or else computer choice 9 and spot nine is X or O 
+            continue
+        or else computer choice  is 1
+            spot one is O 
+            show computer choice is spot one
+        or else computer choice is 2
+            spot two is O
+            show computer choice spot two
+        or else computer choice is 3
+            spot three is O
+            show computer choice spot three
+        or else computer choice is 4
+            spot four is of
+            show computer choice spot four
+        or else computer choice is 5
+            spot five is O
+            show computer choice spot five
+        or else computer choice is 6
+            spot six is O 
+            show computer choice spot six
+        or else computer choice is 7
+            spot seven is O
+            show computer choice spot seven
+        or else computer choice is 8
+            spot eight is O
+            show computer choice spot eight
+        or else computer choice is 9
+            spot nine is O
+            show computer choice spot nine
+    or else choice is 6
+        spot six is X 
+        while true
+        computer choice random number between 1 and 9
+        if computer choice 1 and spot one is X or spot is O
+            continue
+        or else computer choice 2 and spot two is X or O 
+            continue
+        or else computer choice  3 and spot three is X or O 
+            continue
+        or else computer choice 4 and spot four is X or O 
+            continue
+        or else computer choice 5 and spot five is X or O 
+            continue
+        or else computer choice 6 and spot six is X or O 
+            continue
+        or else computer choice 7 and spot seven is X or O 
+            continue
+        or else computer choice 8 and spot eight is X or O 
+            continue
+        or else computer choice 9 and spot nine is X or O 
+            continue
+        or else computer choice  is 1
+            spot one is O 
+            show computer choice is spot one
+        or else computer choice is 2
+            spot two is O
+            show computer choice spot two
+        or else computer choice is 3
+            spot three is O
+            show computer choice spot three
+        or else computer choice is 4
+            spot four is of
+            show computer choice spot four
+        or else computer choice is 5
+            spot five is O
+            show computer choice spot five
+        or else computer choice is 6
+            spot six is O 
+            show computer choice spot six
+        or else computer choice is 7
+            spot seven is O
+            show computer choice spot seven
+        or else computer choice is 8
+            spot eight is O
+            show computer choice spot eight
+        or else computer choice is 9
+            spot nine is O
+            show computer choice spot nine
+    or else choice is 7
+        spot  seven is X 
+        while true
+        computer choice random number between 1 and 9
+        if computer choice 1 and spot one is X or spot is O
+            continue
+        or else computer choice 2 and spot two is X or O 
+            continue
+        or else computer choice  3 and spot three is X or O 
+            continue
+        or else computer choice 4 and spot four is X or O 
+            continue
+        or else computer choice 5 and spot five is X or O 
+            continue
+        or else computer choice 6 and spot six is X or O 
+            continue
+        or else computer choice 7 and spot seven is X or O 
+            continue
+        or else computer choice 8 and spot eight is X or O 
+            continue
+        or else computer choice 9 and spot nine is X or O 
+            continue
+        or else computer choice  is 1
+            spot one is O 
+            show computer choice is spot one
+        or else computer choice is 2
+            spot two is O
+            show computer choice spot two
+        or else computer choice is 3
+            spot three is O
+            show computer choice spot three
+        or else computer choice is 4
+            spot four is of
+            show computer choice spot four
+        or else computer choice is 5
+            spot five is O
+            show computer choice spot five
+        or else computer choice is 6
+            spot six is O 
+            show computer choice spot six
+        or else computer choice is 7
+            spot seven is O
+            show computer choice spot seven
+        or else computer choice is 8
+            spot eight is O
+            show computer choice spot eight
+        or else computer choice is 9
+            spot nine is O
+            show computer choice spot nine
+    or else choice is 8
+        spot eight is X 
+        while true
+        computer choice random number between 1 and 9
+        if computer choice 1 and spot one is X or spot is O
+            continue
+        or else computer choice 2 and spot two is X or O 
+            continue
+        or else computer choice  3 and spot three is X or O 
+            continue
+        or else computer choice 4 and spot four is X or O 
+            continue
+        or else computer choice 5 and spot five is X or O 
+            continue
+        or else computer choice 6 and spot six is X or O 
+            continue
+        or else computer choice 7 and spot seven is X or O 
+            continue
+        or else computer choice 8 and spot eight is X or O 
+            continue
+        or else computer choice 9 and spot nine is X or O 
+            continue
+        or else computer choice  is 1
+            spot one is O 
+            show computer choice is spot one
+        or else computer choice is 2
+            spot two is O
+            show computer choice spot two
+        or else computer choice is 3
+            spot three is O
+            show computer choice spot three
+        or else computer choice is 4
+            spot four is of
+            show computer choice spot four
+        or else computer choice is 5
+            spot five is O
+            show computer choice spot five
+        or else computer choice is 6
+            spot six is O 
+            show computer choice spot six
+        or else computer choice is 7
+            spot seven is O
+            show computer choice spot seven
+        or else computer choice is 8
+            spot eight is O
+            show computer choice spot eight
+        or else computer choice is 9
+            spot nine is O
+            show computer choice spot nine
+    or else choice is 9
+        spot nine is x
+        while true
+        computer choice random number between 1 and 9
+        if computer choice 1 and spot one is X or spot is O
+            continue
+        or else computer choice 2 and spot two is X or O 
+            continue
+        or else computer choice  3 and spot three is X or O 
+            continue
+        or else computer choice 4 and spot four is X or O 
+            continue
+        or else computer choice 5 and spot five is X or O 
+            continue
+        or else computer choice 6 and spot six is X or O 
+            continue
+        or else computer choice 7 and spot seven is X or O 
+            continue
+        or else computer choice 8 and spot eight is X or O 
+            continue
+        or else computer choice 9 and spot nine is X or O 
+            continue
+        or else computer choice  is 1
+            spot one is O 
+            show computer choice is spot one
+        or else computer choice is 2
+            spot two is O
+            show computer choice spot two
+        or else computer choice is 3
+            spot three is O
+            show computer choice spot three
+        or else computer choice is 4
+            spot four is of
+            show computer choice spot four
+        or else computer choice is 5
+            spot five is O
+            show computer choice spot five
+        or else computer choice is 6
+            spot six is O 
+            show computer choice spot six
+        or else computer choice is 7
+            spot seven is O
+            show computer choice spot seven
+        or else computer choice is 8
+            spot eight is O
+            show computer choice spot eight
+        or else computer choice is 9
+            spot nine is O
+            show computer choice spot nine
+        else
+            show this was an invalide input
 
