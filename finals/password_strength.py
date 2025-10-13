@@ -14,8 +14,6 @@ upp_point = 0
 spe_point = 0
 #number point = 0
 num_point = 0
-#total points = length point + lower point + upper point + number point + special point
-total = len_point + low_point + upp_point + spe_point + num_point
 #special = (!@#$%^&*()_+-=[]{}|;:,.<>?)
 special = "(!@#$%^&*()_+-=[]{}|;:,.<>?)"
 
@@ -27,7 +25,7 @@ if length >= 8:
 #for password
 for char in password:
     #if character is lower is true
-    if char.islower:
+    if char.islower():
         #add 1 point to the  lower points
         low_point += 1
         #break code
@@ -35,7 +33,7 @@ for char in password:
 #for password
 for char in password:
     #if charachter is upper is true
-    if char.isupper:
+    if char.isupper():
         #add 1 to  upper points
         upp_point += 1
         #break code
@@ -43,7 +41,7 @@ for char in password:
 #for password
 for char in password:
     #if character is number is true
-    if char.isnumeric:
+    if char.isnumeric():
         #add 1 to number points
         num_point += 1
         #break code
@@ -56,7 +54,7 @@ for char in password:
         spe_point += 1
         #break code
         break
-
+total = len_point + low_point + upp_point + spe_point + num_point
 # show the total points
 print(f"Your password is {total}/5")
 #if total points is 5
