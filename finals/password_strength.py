@@ -80,18 +80,34 @@ elif total == 1:
     #show this is a very weak password
     print("This is a very weak password.")
 #or else total points is 0
+elif total == 0:
+    
     #show this is th worst password ever
-#if 
+    print("This is the worst password")
+#else
+else:
+    #show something went wrong sorry try again
+    print("Sorry something went wrong. Please try again.")
 #if length point is 0
+if len_point == 0:
     #show this password is too short
+    print("This password is too short.")
 #if lower point is 0
+if low_point == 0:
     #show this password doesn't have a lowercase letter
+    print("This password doesn't have any lowercase letters.")
 #if upper point is 0
+if upp_point == 0:
     #show this password doesn't have an uppercase letter
+    print("This password doesn't have any uppercase letters.")
 #if number point is 0
+if num_point == 0:
     #show this password doesn't have a number
+    print("This password doesn't have any numbers.")
 #if special point is 0
+if spe_point == 0:
     #show this password doesn't have a special character
+    print("This password doesn't have any special characters.")
 
 
         
