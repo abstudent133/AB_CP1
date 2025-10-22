@@ -18,8 +18,10 @@ def action(shift):
         if letter.isalpha():
             #ord letter + shift
             new_letter = chr(ord(letter)+shift)
-            #return new message
-            return new_letter
+            #add new letter to message
+            new_message = letter.replace(letter, new_letter)
+            #return message
+            return new_message 
         #else
         else:
             #contiune
@@ -31,17 +33,26 @@ def action(shift):
 #Show Hello this is a Caesar cipher for encoding and decoding messages. If you would like to encode a message enter 1 and if you would like to decode enter 2.
 print("Hello. This is a Caesar cipher for encoding and decoding messages. If you would like to encode a message enter 1 but if you want to decode a message enter 2.")
 # choice is  ask Please enter the number of the action you would like to complete:
-choice = input("Please enter the number of the action you would like to complete: ")
+choice = int(input("Please enter the number of the action you would like to complete: "))
 
 #if they chose 1 then
 if choice == 1:
     #message is what is the message you would like to encode
+    message = input("What is the message you would like to encode: ")
     
     #shift is ask choose an amount to shift the letters
+    shift = int(input("What is the number the letters shifted by: "))
     #action(shift)
+    action(shift)
     #show message
+    print(f"This is the new message: {message}")
 #or else they chose 2 then
+elif choice == 2:
     #message is what is the message you would like to decode
+    message = input("What is the message you would like to decode: ")
     #shift is what is the amount that the message was shifted
+    shift = int(input("What is the number the letters shifted by: "))
     #action(shift)
+    action(shift)
     #show message
+    print(f"This is the decoded message: {message}")

@@ -37,3 +37,6 @@ add(3,9)
 print(initials("Anna Bangerter"))
 print(f"a = {ord("a")}")
 print(f"98 = {chr(98)}")
+
+letter = "a"
+print(f"a = {chr(ord(letter)+5)}")
