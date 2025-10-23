@@ -93,7 +93,9 @@ elif number % 4 == 0:
         pass
 elif number % 3 == 0:
     if number % 2 == 0:
-        pass
+        print(f"{number} x 1")
+        print(f"{number/2} x 2")
+        print(f"{number/3} x 3")
     elif number % 1 == 0:
         print(f"{number} x 1")
         print(f"{number/3} x 3")
