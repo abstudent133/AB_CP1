@@ -8,15 +8,18 @@ knight = {
     "health": 30,
     "defense": 10,
     "attack 1": dice_1 + 2,
-    "attack 2": 14,
-    "attack 3": monster["defense"] -= 2,
+    "attack 2": "attack 1"*2 and "health"-2,
+    "attack 3": dice_2
+    "attack 4": "health" += 9
 
 }
 
 hunter = {
     "health": 20,
     "defense": 12,
-    "attack": dice_1 + 5
+    "attack 1": dice_1 + 5
+    "attack 2": "attack 1"*2 and "health"-=
+
 }
 
 monster = {
@@ -24,8 +27,11 @@ monster = {
     "defense": 10,
     "attack": 12
 }
-
+health = 0
+attack1 = 0
+defense = 0
 fighter = [knight, hunter]
 choose_fighter = input("Please cho")
+
 def player(attack, defense):
-    fighter
+    health -= 
