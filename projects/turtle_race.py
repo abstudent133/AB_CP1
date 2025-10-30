@@ -3,6 +3,8 @@
 import turtle as t
 import random as r
 
+
+
 t1 = t.Turtle()
 t2 = t.Turtle()
 t3 = t.Turtle()
@@ -37,7 +39,7 @@ t4.color("green")
 t4.shape("turtle")
 t4.penup()
 t4.setposition(0,150)
-t4.pendown
+t4.pendown()
 
 
 t5.color("blue")
@@ -57,8 +59,24 @@ t6.pendown()
 t6.left(90)
 t6.forward(290)
 
-while t1.pos() > 500 and t2.pos() > 500:
+while True:   
     for turtle in turtles:
-        turtle.forward(r.randint(5,10))
+        turtle.forward(r.randint(1,10))
+
+    
+    
+#else:
+    #if t1.position(500, 300):
+        #print("The winner is the red turtle!")
+    #elif t2.position(500, 250):
+       # print("The winner is the orange turtle!")
+    #elif t3.position(500, 200):
+        #print("The winner is the yellow turtle!")
+    #elif t4.position(500, 150):
+        #print("The winner is the green turtle!")
+    #elif t5.position(500, 100):
+        #print("The winner is the blue turtle!")
+
+t.done()
 
 
