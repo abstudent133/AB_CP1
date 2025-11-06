@@ -3,15 +3,22 @@
 #import libraries(turtle and random)
 import turtle as t
 import random as r
-
+#set variables
 cell_size = 50
 rows = 6
 columns = 6
-boxes = [[],[],[],[]]
-visited = []
 row_grid = []
 column_grid = []
+visited = []
+#set origin points
+origin_x = -columns * cell_size/2
+origin_y = rows * cell_size/2
 
+#fuction to randomize walls
+
+#function to check maze solveable
+
+#function
 
 
 
@@ -24,40 +31,11 @@ def setup_turtle():
     t.speed(0)
     t.pensize(3)
     t.penup()
-def grid_setup():
-    for i in range(1, 36):
-        boxes[0].append(1)
-        boxes[1].append(1)
-        boxes[2].append(1)
-        boxes[3].append(1)
 
-def randomize_walls():
-    grid_setup()
-    for n in boxes[0]:
-        choice = r.randint(0,1)
-        if choice == 0:
-            n = 0
-        else:
-            continue
-    for n in boxes[1]:
-        choice = r.randint(0,1)
-        if choice == 0:
-            n = 0
-        else:
-            continue
-    for n in boxes[2]:
-        choice = r.randint(0,1)
-        if choice == 0:
-            n = 0
-        else:
-            continue
-    for n in boxes[3]:
-        choice = r.randint(0,1)
-        if choice == 0:
-            n = 0
-        else:
-            continue
-    return boxes
+def grid_setup(row_):
+    
+
+
     
         
         
@@ -66,18 +44,17 @@ def draw_grid():
     t.setpos(0,0)
     for i in range(rows +1):
         t.pendown()
-        for l in range(1,5):
-            t.forward(50)
+        for j in range(1,5):
+            t.forward(cell_size)
             t.left(90)
         
 
     
 
 setup_turtle()
-grid_setup()
-print(grid_setup())
-randomize_walls()
-print(randomize_walls())
+grid_setup(boxes)
+randomize_walls(boxes)
+
 t.done()
 
 
