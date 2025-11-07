@@ -7,12 +7,24 @@ import random as r
 cell_size = 50
 rows = 6
 columns = 6
-row_grid = []
-column_grid = []
+boxes = []
+row_grid = [[1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1]]
+column_grid = [[1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1]]
 visited = []
 #set origin points
 origin_x = -columns * cell_size/2
 origin_y = rows * cell_size/2
+
 
 #fuction to randomize walls
 
@@ -32,8 +44,16 @@ def setup_turtle():
     t.pensize(3)
     t.penup()
 
-def grid_setup(row_):
+def grid_setup(boxes):
+    for i in range(rows*columns):
+        box = [1,1,1,1]
+        boxes.append(box)
+def randomize_walls(row_grid,column_grid):
+    row_grid[i][j]
     
+        
+        
+        
 
 
     
@@ -52,8 +72,9 @@ def draw_grid():
     
 
 setup_turtle()
-grid_setup(boxes)
-randomize_walls(boxes)
+grid_setup(row_grid)
+print(row_grid)
+
 
 t.done()
 
