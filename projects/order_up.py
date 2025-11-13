@@ -35,14 +35,14 @@ order = {
     #main course
     'main course':"",
     #side dish 1
-    'side dish 1':"",
-    #side dish 2
-    'side dish 2':""
+    'side dishes':{
+        'side dish 1'
+    }
 }
 #definition check(ordering)
 def check(ordering):
     #if ordering in key
-    if ordering in key:
+    if ordering in menu[key].keys():
         #return true
         return True
     #else
@@ -51,12 +51,12 @@ def check(ordering):
         return False
 
 #definition take order(ordering, key)
-def take_order(ordering, key):
+def take_order(ordering, key, order):
     #if check(ordering) is true
     if check(ordering) == True:
         #order [key] = ordering
-        order[key] = ordering
-    else
+       order[key] = ordering
+    return order
 #definition get price(ordering, key)
 def price(ordering, key):
     #price is menu [key][ordering]
@@ -88,7 +88,7 @@ for key in order.keys():
         #ordering is ask which side dish they want second
         ordering = input("What would you like for your second side dish: ")
     #call take order(ordering, key)
-    take_order(ordering, key)
+    order = take_order(ordering, key, order)
 #for key in order
 for key in order.keys():
     total = 0
