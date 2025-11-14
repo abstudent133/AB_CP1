@@ -35,12 +35,13 @@ order = {
     #main course
     'main course':"",
     #side dish 1
-    'side dishes':{
-        'side dish 1'
-    }
+    'side dish 1':"",
+    #side dish 2
+    'side dish 2':""
 }
-#definition check(ordering)
-def check(ordering):
+
+#definition check(ordering, key)
+def check(ordering, key):
     #if ordering in key
     if ordering in menu[key].keys():
         #return true
@@ -53,10 +54,11 @@ def check(ordering):
 #definition take order(ordering, key)
 def take_order(ordering, key, order):
     #if check(ordering) is true
-    if check(ordering) == True:
+    if check(ordering, key) == True:
         #order [key] = ordering
-       order[key] = ordering
+        order[key] = ordering
     return order
+
 #definition get price(ordering, key)
 def price(ordering, key):
     #price is menu [key][ordering]
@@ -74,31 +76,47 @@ for key in order.keys():
     # if key is drink
     if key == 'drink':
         #ordering is ask which drink they want
-        ordering = input("What drink would you like:")
+        ordering = input("What drink would you like: ").lower()
+        menu_key = "drink"
+
     #elif key is main course
     elif key == 'main course':
         #ordering is ask which main course they want
-        ordering = input("Which main course would you like: ")
+        ordering = input("Which main course would you like: ").lower()
+        menu_key = "main course"
+
     #elif key is side dish 1
     elif key == 'side dish 1':
         #ording is ask which side dish they want first
-        ordering = input("What would you like for your first side dish: ")
+        ordering = input("What would you like for your first side dish: ").lower()
+        menu_key = "side dishes"
+
     #elif key is side dish 2
     elif key == 'side dish 2':
         #ordering is ask which side dish they want second
-        ordering = input("What would you like for your second side dish: ")
+        ordering = input("What would you like for your second side dish: ").lower()
+        menu_key = "side dishes"
+
     #call take order(ordering, key)
-    order = take_order(ordering, key, order)
-#for key in order
+    take_order(ordering, menu_key, order)
+
+#calculate total
+total = 0
 for key in order.keys():
-    total = 0
-    #total += price
-    total += price(ordering, key)
+    # find correct menu category
+    if key in ["side dish 1", "side dish 2"]:
+        menu_key = "side dishes"
+    else:
+        menu_key = key
+
+    total += price(order[key], menu_key)
+
 #print keys
 print(order['drink'])
 print(order['main course'])
 print(order['side dish 1'])
 print(order['side dish 2'])
+
 #show total
 print(total)
 
