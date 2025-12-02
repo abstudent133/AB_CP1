@@ -3,28 +3,13 @@
 
 #Dictionaries
 #Player ditionary
-#player = {
-#   health: 30,
-#   stealth: 5,
-#   strength: 20,
-#   attack: 5,
-#   agility: 10
-#   items: []}
+#player has perry's health, stealth, and basic attack
 #Doof dictionary
-#doof = {
-#   health: 40,
-#   strength: 20,
-#   agility: 10,
-#   attack: 7,
-#   inator: {
-#       health: 30,
-#       strength: 15}
+#doof has Doofenshmirz's health, attack, and inator stats
 #   }
 #Norm dictionary
 #norm = {
 #   health: 20
-#   strength: 15
-#   agility: 5
 #   attack: 5}
 
 #Variables
