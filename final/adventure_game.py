@@ -1,89 +1,127 @@
-#AB 1st Text Based Adventure Game
-#import random
+# AB Text-Based Adventure Game Pseudocode
 
-#DICTIONARIES
-#Player ditionary
-#player has perry's health, stealth, agility,strength, and basic attack
-#Doof dictionary
-#doof has Doofenshmirz's health, attack, and inator stats
-#   }
-#Norm dictionary
-#norm has norm's health and basic attack
+# Create a dictionary for Perry with his starting health, attack, strength, agility, and stealth.
+# Create a dictionary for Doofenshmirtz with health, attack, and inator stats.
+# Create a dictionary for Norm with health, attack, and strength.
+# Create an empty list to store Perry’s collected gadgets.
+# Create an empty list to record rooms that have been visited.
+# Create variables to track defeated enemies, collected items, and disabled machines.
+# Define a list of the nine Tri-State Area locations Perry can travel to.
 
-#Variables
-#gadgets is a list of gadgets perry has attained
-#visited rooms is a list of the rooms that were visited
-#alive is true
+# FUNCTIONS
+# Function: check_item_in_list
+# Checks if a specific gadget or item is in Perry’s inventory.
+# Returns true if the item is already collected, false if not.
 
+# Function: update_stats
+# Modifies Perry’s stealth, strength, or agility depending on the room or item effects.
+# Includes checks to prevent stats from going below zero.
+# Returns updated stats.
 
-#FUNCTIONS
-#Note: any time I describe checking perry's stats, the gadget list, or the visited rooms plan on creating nested conditionals
-#Room 1 funtion(Fletcher Yard)
-#The goal of this funtion is to get money from the Fletchers and gain some stealth or strength
-#For this function the parameters is the gadgets list, kwarg of perry's stats(health,stealth,strength), visit_room
-#   get money is false
-#   first the computer needs to check true or false if the room has been visited
-#       if the parameter is false then
-#           choice is ask if they would like to leave or steal the money
-#           if it is to leave then
-#               tell them they left and end funtion
-#           else they want to steal the money and return 
-#               tell them they got the money and 
-#   Then the computer need to check if the gadget is in list with the list checker funtion
-#   Then the computer has to check if the player has the correct stats based on what is necessary
-#   Use conditionals about if the room has been visited, if you have money already, and if you have the correct stats to steal the money if you didn't already to get an outcome
+# Function: update_health
+# Increases or decreases Perry’s health.
+# Checks if health drops below zero or exceeds maximum.
+# Returns updated health.
 
-#Room 2 funtion(Danvil Park)
-#The goal of this funtion is to get the keycard for Doofenshmirz Evil Inc. and you have to fight norm for it unless you have the correct number of stats
-#For this funtion the parameters are perry's stats, the gadget list, and the visit_room
-#   First use the true or false if the room has been visited
-#   Then use the list checker funtion to check if the player already has the gadget
-#   If they haven't gotten the object then they need to fight norm bot so I would call the combat funtion
-#   Then the computer has to check if the player has the correct stats based on what is necessary
-#   Use a seiries of conditionals to reach the outcome of the room and how they are going to interact with it
+# Function: combat
+# Handles a fight between Perry and an enemy (Norm or Doof).
+# Loop until either Perry or the enemy reaches zero health.
+# Apply damage based on attacks and stats.
+# Checks for special items or higher stats that could affect damage.
+# Return who won the fight and updated health.
 
-#Room 3 funtion(City Hall)
-#The goal of this funtion is to gain a signal jammer and you need to warn Mayor Roger Doofenshmirz but to do that you need the platypus translator also you can gain some agility
-#For this funtion the parameters are the gadget list and perry_agility and visit_room
-#   First check if the room has been visited
-#   First check the gadget list to see if you have the signal jammer if so then you just exit the room
-#   If you haven't then the computer uses the list checker again to check if the player has the platypus translator then you can warn the mayor and get the signal jammer other wise you have to leave
-#   If you haven't already been there then you can gain an agility point
+# Function: pick_up_item
+# Adds an item to Perry’s gadgets list if not already collected.
+# Applies any stat bonuses from the item.
+# Returns updated inventory and stats.
 
-#Room 4 funtion(Subway Tunnels)
-#This room is the only way to get to the final boss but you need to have a flashlight
-#For this funtion the parameters are the gadget list
-#   If the flashlight is on the gadget list(checked with the list checker funtion) then the player can enter other wise they can't enter
-#   If they do have the flashlight then they can enter and choose to leave go to Doofenshmirtz Evil Inc. or to the Alley way hide out
+# Function: room_choice
+# Checks which rooms Perry can travel to next.
+# Prevents travel to locked or inaccessible rooms.
+# Returns the selected room.
 
-#Room 5 funtion(Slushy Burger)
-#The goal of this room is to gain health from a burger but you need to have money also you can take a flash light if you have the correct stealth level
-#For this funtion the parameters are perry's health, the gadget list, the visited rooms true or false
-#   First if the room has been visited true or false
-#   Depending on that answer you can use money if you have it to gain the health or you just have to leave or you want to try and take a flashlight
-#   If they want to take the flash light then they have to have at least level 1 stealth otherwise they would lose health and not get the flashlight
-#   The result would be perry's health and the gadget list 
+# Function: play_again
+# Asks the player if they want to restart the mission after win or loss.
+# If yes, resets stats, inventory, and visited rooms.
+# If no, ends the game.
 
-#Room 6 funtion(Waste Recycling Plant)
-#In this room Doof has set up a machine that broadcasts his mind controling waves farther and you have to jam it with the signal jammer but you have to have a certain level of agility to do it. This weakens the inator making it easier to break
-#For this funtion the parameters are the gadget list, perry's agility, and the visited rooms 
-#
+# ROOM FUNCTIONS
+# Room 1 Function: Flynn-Fletcher Backyard
+# Checks if the room has been visited.
+# If visited, only option is to leave.
+# If not visited, Perry can choose to sneak or run.
+# If Perry sneaks and stealth is high enough, this leads to gaining money and +1 stealth.
+# If Perry runs, random chance may cause him to get caught.
+# If caught, losing health and the room visit is recorded as completed.
+# Otherwise, successful exit, stats updated, room marked visited.
 
-#Room 7 funtion(Water Tower)
-#Room 8 funtion(Alleyway Hideout)
-#Room 9 funtion(Doofenshmirz Evil Inc.)
-#Room choice funtion
-#Health change funtion
-#Attack funtion
-#Play again funiton
+# Room 2 Function: Danville Park
+# Checks if the room has been visited.
+# If Perry already has the keycard, only option is to leave.
+# If Perry has high enough stats, this leads to stealing the card without fighting.
+# Otherwise, combat with Norm occurs (combat function called).
+# After fight, if Perry wins, this causes the keycard to be added to gadgets list.
+# Room marked as visited.
 
-#MAIN LOOP
-#while true
-#   describe mission to player
-#   tell them about the first room
-#   run room 1 funtion
-#   while alive is true
-#       choose room you want to enter
-#       use the list checking funtion to check if they have visited the room with the visited_rooms list
-#       for room 1 if the room has been visited
-#           run room 1 funtion with
+# Room 3 Function: City Hall
+# Checks if the room has been visited.
+# If signal jammer already collected, this leads to being able to exit the room.
+# If Perry has the platypus translator, this leads to warning Mayor and receiving the signal jammer.
+# If not, Perry must leave without the jammer.
+# On first visit, Perry gains +1 agility.
+# Room marked visited.
+
+# Room 4 Function: Subway Tunnels
+# If Perry has flashlight, room is accessible.
+# If flashlight missing, this causes him to be blocked.
+# If accessible, player can choose to travel to Alleyway Hideout or Doofenshmirtz Evil Inc.
+# Room can be revisited multiple times.
+
+# Room 5 Function: Slushy Burger
+# Checks if room has been visited.
+# If Perry has money, this leads to eating burger and gaining health.
+# If Perry tries to steal flashlight, must have stealth level 1.
+# If stealth too low, this causes failing and losing health.
+# If stealth sufficient, this leads to adding flashlight to gadgets.
+# Room marked as visited after first interaction.
+
+# Room 6 Function: Waste Recycling Plant
+# Checks if room has been visited.
+# If Perry has strength level 1 or higher, this leads to getting ID.
+# If strength too low, this causes not being able to get ID yet.
+# ID added to gadgets list if collected.
+# Room marked as visited.
+
+# Room 7 Function: Water Tower
+# Checks if room has been visited.
+# If signal jammer collected AND agility level 1+, this leads to disabling booster.
+# If not, this causes inability to disable booster yet.
+# Room marked as visited.
+
+# Room 8 Function: Alleyway Hideout
+# If Perry has ID from Waste Recycling Plant, this leads to being able to enter.
+# If no ID, this causes him to be blocked from entering.
+# If translator not yet collected, this leads to adding platypus translator to gadgets list.
+# Room marked as visited.
+
+# Room 9 Function: Doofenshmirtz Evil Inc.
+# Perry must have at least level 1 in strength, agility, and stealth to fight Doof.
+# If any stat is missing, this causes inability to fight → return failure.
+# If all stats present, this leads to triggering final combat function.
+# If Room 7 booster disabled, this leads to Doof being weaker, making battle easier.
+# Return battle result and updated stats.
+
+# MAIN LOOP
+# Start mission statement: explain Perry’s goal to stop Doofenshmirtz.
+# Place Perry in Room 1 and call Room 1 function.
+# While Perry has not reached Room 9 and health > 0:
+#     Call room_choice to select next room.
+#     Call the chosen room’s function.
+#     Check if room was visited before and handle appropriately.
+#     Update Perry’s stats, health, gadgets, and visited rooms based on room outcomes.
+#     If combat occurs, this leads to calling combat function and updating health/stats.
+#     Check after each loop: if Perry’s health ≤ 0, this causes mission to fail → break loop.
+# Once Room 9 completed:
+#     If Perry won final battle, this leads to mission success.
+#     If Perry lost, this causes mission failure.
+# After mission ends, call play_again function to reset or exit.
