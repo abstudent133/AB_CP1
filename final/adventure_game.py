@@ -1,31 +1,77 @@
 # AB Text-Based Adventure Game Pseudocode
 
 # Create a dictionary for Perry with his starting health, attack, strength, agility, and stealth.
+perry = {
+    "health":30,
+    "attack":5,
+    "strengh":0,
+    "agility":0,
+    "stealth":0
+}
 # Create a dictionary for Doofenshmirtz with health, attack, and inator stats.
+doof = {
+    "health":40,
+    "attack":10,
+    "inator":{
+        "health":20
+    }
+}
 # Create a dictionary for Norm with health, attack, and strength.
+norm = {
+    "health":25,
+    "attack":5
+}
 # Create an empty list to store Perry’s collected gadgets.
+gadgets = []
 # Create an empty list to record rooms that have been visited.
+visited = []
 # Create variables to track defeated enemies, collected items, and disabled machines.
+defeated = []
 # Define a list of the nine Tri-State Area locations Perry can travel to.
+tri_state_area = ["Fletcher Backyard","Danville Park","City Hall","Subway Tunnels","Slushy Burger","Waste Recycling Plant","Water Tower","Alleyway Hideout","Doofenshmirz Evil Inc."]
 
 # FUNCTIONS
 # Function: check_item_in_list
+def check_list(*arg,item):
 # Checks if a specific gadget or item is in Perry’s inventory.
 # Returns true if the item is already collected, false if not.
+    if item in arg:
+        return True
+    else:
+        return False
 
 # Function: update_stats
+def update_stats(name,change,**kwarg):
 # Modifies Perry’s stealth, strength, or agility depending on the room or item effects.
+    if name in kwarg:
+        name = name + change
 # Includes checks to prevent stats from going below zero.
+        if name >= 0:
+            pass
+        else:
+            name = 0
+        return name
+    else:
+        return "The item you want to change isn't in the dictionary."
 # Returns updated stats.
 
 # Function: update_health
+def update_health(health,change):
 # Increases or decreases Perry’s health.
+    health = health + change
 # Checks if health drops below zero or exceeds maximum.
+    if health > 45:
+        health = 45
+    elif health < 0:
+        health = 0
 # Returns updated health.
+    return health
 
 # Function: combat
+def combat(p_health,enemy_health):
 # Handles a fight between Perry and an enemy (Norm or Doof).
 # Loop until either Perry or the enemy reaches zero health.
+    while p_health > 0 and enemy_health > 0:
 # Apply damage based on attacks and stats.
 # Checks for special items or higher stats that could affect damage.
 # Return who won the fight and updated health.
