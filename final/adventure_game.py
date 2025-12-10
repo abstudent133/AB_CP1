@@ -68,21 +68,42 @@ def update_health(health,change):
     return health
 
 # Function: combat
-def combat(p_health,enemy_health):
+def combat(p_health,enemy_health,attack,enemy_attack):
 # Handles a fight between Perry and an enemy (Norm or Doof).
 # Loop until either Perry or the enemy reaches zero health.
+    winner = ""
+    turn = "perry"
     while p_health > 0 and enemy_health > 0:
 # Apply damage based on attacks and stats.
-# Checks for special items or higher stats that could affect damage.
+        if turn == "perry":
+            enemy_health -= attack
+        elif turn == "enemy":
+            p_health -= enemy_attack
+    if p_health <= 0:
+        winner = "enemy"
+    elif enemy_health <= 0:
+        winner = "perry" 
+    return winner
 # Return who won the fight and updated health.
 
 # Function: pick_up_item
+def pick_up_item(item,attack,*gadget):
 # Adds an item to Perry’s gadgets list if not already collected.
+    if item in gadget:
+        in_list = True
+        return in_list
+    else:
+        gadget.append(item)
+        attack += 1
+        return gadget and attack
 # Applies any stat bonuses from the item.
 # Returns updated inventory and stats.
 
 # Function: room_choice
+def room_choice(*gadget):
 # Checks which rooms Perry can travel to next.
+    if 'flashlight' in gadget:
+        choice = input("You have a choice of any of the nine rooms including the Fletcher yard, Danville Park, City Hall, the Subway, Slushy Burger, the Waste Recycling Plant")
 # Prevents travel to locked or inaccessible rooms.
 # Returns the selected room.
 
