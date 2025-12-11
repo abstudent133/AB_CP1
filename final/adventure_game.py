@@ -1,109 +1,41 @@
 # AB Text-Based Adventure Game Pseudocode
 
 # Create a dictionary for Perry with his starting health, attack, strength, agility, and stealth.
-perry = {
-    "health":30,
-    "attack":5,
-    "strengh":0,
-    "agility":0,
-    "stealth":0
-}
 # Create a dictionary for Doofenshmirtz with health, attack, and inator stats.
-doof = {
-    "health":40,
-    "attack":10,
-    "inator":{
-        "health":20
-    }
-}
 # Create a dictionary for Norm with health, attack, and strength.
-norm = {
-    "health":25,
-    "attack":5
-}
 # Create an empty list to store Perry’s collected gadgets.
-gadgets = []
 # Create an empty list to record rooms that have been visited.
-visited = []
 # Create variables to track defeated enemies, collected items, and disabled machines.
-defeated = []
 # Define a list of the nine Tri-State Area locations Perry can travel to.
-tri_state_area = ["Fletcher Backyard","Danville Park","City Hall","Subway Tunnels","Slushy Burger","Waste Recycling Plant","Water Tower","Alleyway Hideout","Doofenshmirz Evil Inc."]
 
 # FUNCTIONS
 # Function: check_item_in_list
-def check_list(*arg,item):
 # Checks if a specific gadget or item is in Perry’s inventory.
 # Returns true if the item is already collected, false if not.
-    if item in arg:
-        return True
-    else:
-        return False
 
 # Function: update_stats
-def update_stats(name,change,**kwarg):
 # Modifies Perry’s stealth, strength, or agility depending on the room or item effects.
-    if name in kwarg:
-        name = name + change
 # Includes checks to prevent stats from going below zero.
-        if name >= 0:
-            pass
-        else:
-            name = 0
-        return name
-    else:
-        return "The item you want to change isn't in the dictionary."
 # Returns updated stats.
 
 # Function: update_health
-def update_health(health,change):
 # Increases or decreases Perry’s health.
-    health = health + change
 # Checks if health drops below zero or exceeds maximum.
-    if health > 45:
-        health = 45
-    elif health < 0:
-        health = 0
 # Returns updated health.
-    return health
 
 # Function: combat
-def combat(p_health,enemy_health,attack,enemy_attack):
 # Handles a fight between Perry and an enemy (Norm or Doof).
 # Loop until either Perry or the enemy reaches zero health.
-    winner = ""
-    turn = "perry"
-    while p_health > 0 and enemy_health > 0:
 # Apply damage based on attacks and stats.
-        if turn == "perry":
-            enemy_health -= attack
-        elif turn == "enemy":
-            p_health -= enemy_attack
-    if p_health <= 0:
-        winner = "enemy"
-    elif enemy_health <= 0:
-        winner = "perry" 
-    return winner
 # Return who won the fight and updated health.
 
 # Function: pick_up_item
-def pick_up_item(item,attack,*gadget):
 # Adds an item to Perry’s gadgets list if not already collected.
-    if item in gadget:
-        in_list = True
-        return in_list
-    else:
-        gadget.append(item)
-        attack += 1
-        return gadget and attack
 # Applies any stat bonuses from the item.
 # Returns updated inventory and stats.
 
 # Function: room_choice
-def room_choice(*gadget):
 # Checks which rooms Perry can travel to next.
-    if 'flashlight' in gadget:
-        choice = input("You have a choice of any of the nine rooms including the Fletcher yard, Danville Park, City Hall, the Subway, Slushy Burger, the Waste Recycling Plant")
 # Prevents travel to locked or inaccessible rooms.
 # Returns the selected room.
 
@@ -192,3 +124,110 @@ def room_choice(*gadget):
 #     If Perry won final battle, this leads to mission success.
 #     If Perry lost, this causes mission failure.
 # After mission ends, call play_again function to reset or exit.
+
+perry = {
+    "health":30,
+    "attack":5,
+    "strengh":0,
+    "agility":0,
+    "stealth":0
+}
+doof = {
+    "health":40,
+    "attack":10,
+    "inator":{
+        "health":20
+    }
+}
+norm = {
+    "health":25,
+    "attack":5
+}
+gadgets = []
+visited = []
+defeated = []
+tri_state_area = ["Fletcher Backyard","Danville Park","City Hall","Subway Tunnels","Slushy Burger","Waste Recycling Plant","Water Tower","Alleyway Hideout","Doofenshmirz Evil Inc."]
+
+def check_list(item,*arg):
+    if item in arg:
+        return True
+    else:
+        return False
+
+def update_stats(name,change,**kwarg):
+    if name in kwarg.keys():
+        name = name + change
+        if name >= 0:
+            pass
+        else:
+            name = 0
+        return name
+    else:
+        return "The item you want to change isn't in the dictionary."
+
+def update_health(health,change):
+    health = health + change
+    if health > 45:
+        health = 45
+    elif health < 0:
+        health = 0
+    return health
+
+def combat(p_health,enemy_health,attack,enemy_attack):
+    winner = ""
+    turn = "perry"
+    while p_health > 0 and enemy_health > 0:
+        if turn == "perry":
+            enemy_health -= attack
+        elif turn == "enemy":
+            p_health -= enemy_attack
+    if p_health <= 0:
+        winner = "enemy"
+    elif enemy_health <= 0:
+        winner = "perry" 
+    return winner
+
+def pick_up_item(item,attack,*gadget):
+    if item in gadget:
+        in_list = True
+        return in_list
+    else:
+        gadget.append(item)
+        attack += 1
+        return gadget and attack
+
+def room_choice(*gadget):
+    if 'flashlight' in gadget:
+        choice = input(f"You have a choice of any of the nine rooms including {tri_state_area}. What is your choice: ")
+        choice = choice.lower().strip()
+    else:
+        choice = input("You have a choice of 7 of the nine rooms including the Fletcher Yard, Danville, City Hall, Slushy Burger, Waste Recycling Plant, Water Tower, Alleyway Hideout. What is your choice: ")
+        choice = choice.lower().strip()
+    return choice
+
+def play_again():
+    choice = input("Would you like to play again? If yes put 1, if no put 2. Input here: ")
+    if choice == "1":
+        play = True
+    else:
+        play = False
+    return play
+
+# Room 1 Function: Flynn-Fletcher Backyard
+# Checks if the room has been visited.
+# If visited, only option is to leave.
+# If not visited, Perry can choose to sneak or run.
+# If Perry sneaks and stealth is high enough, this leads to gaining money and +1 stealth.
+# If Perry runs, random chance may cause him to get caught.
+# If caught, losing health and the room visit is recorded as completed.
+# Otherwise, successful exit, stats updated, room marked visited.
+def room_1(*visited):
+#result = [health,stealth,strength]
+    result = [0]
+    if "room 1" in visited:
+        return "You have already been in this room. You have to leave."
+    else:
+        choice = input("You have the choice to get the money from the Fletchers. This item may be used in a later room. If you choose to take the money you can either run and get it and gain a strength point but there is a 50 percent chance that you get caught unless you already have a strength point or you could sneak and gain a stealth point but there is a 50 percent chance the money was grabed and taken unless you have a stealth point already. If you would like to just leave this room input 1. If you would like to use stealth to get the money input 2 and if you would like to run for the money input 3. Please input your choice here: ")
+        if choice == "1":
+            result = result.append(0)
+            return result
