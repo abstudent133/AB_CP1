@@ -261,5 +261,5 @@ def room_2(stealth,*gadget,**visited):
         if choice == '1' and stealth >= 1:
 
 
-
+s
             
