@@ -124,6 +124,7 @@
 #     If Perry won final battle, this leads to mission success.
 #     If Perry lost, this causes mission failure.
 # After mission ends, call play_again function to reset or exit.
+import random
 
 perry = {
     "health":30,
@@ -213,21 +214,52 @@ def play_again():
         play = False
     return play
 
-# Room 1 Function: Flynn-Fletcher Backyard
-# Checks if the room has been visited.
-# If visited, only option is to leave.
-# If not visited, Perry can choose to sneak or run.
-# If Perry sneaks and stealth is high enough, this leads to gaining money and +1 stealth.
-# If Perry runs, random chance may cause him to get caught.
-# If caught, losing health and the room visit is recorded as completed.
-# Otherwise, successful exit, stats updated, room marked visited.
-def room_1(*visited):
-#result = [health,stealth,strength]
-    result = [0]
-    if "room 1" in visited:
+def room_1(strength,*gadget,**visited):
+#result = [health,stealth,strength,attack]
+    result = [0,0,0,0,0,0]
+    if "room 1" in visited.keys() and 'money' in gadget:
         return "You have already been in this room. You have to leave."
     else:
-        choice = input("You have the choice to get the money from the Fletchers. This item may be used in a later room. If you choose to take the money you can either run and get it and gain a strength point but there is a 50 percent chance that you get caught unless you already have a strength point or you could sneak and gain a stealth point but there is a 50 percent chance the money was grabed and taken unless you have a stealth point already. If you would like to just leave this room input 1. If you would like to use stealth to get the money input 2 and if you would like to run for the money input 3. Please input your choice here: ")
+        choice = input("You have the choice to get the money from the Fletchers. This item may be used in a later room. If you choose to take the money you can either run and get it and gain a strength point and 1 to your attack but there is a 50 percent chance that you get caught unless you already have a strength point or you could sneak and gain a stealth point. If you would like to just leave this room input 1. If you would like to use stealth to get the money input 2 and if you would like to run for the money input 3. Please input your choice here: ")
         if choice == "1":
-            result = result.append(0)
             return result
+        elif choice == "2":
+            result[1] += 1
+            result[4] = 1
+            result[5] = 1
+            return result
+        elif choice == "3" and strength >= 1:
+            result[2] += 1
+            result[3] += 1
+            result[5] = 1
+            return result
+        elif choice == "3" and strength < 1:
+            dice = random.randint(1,2)
+            if dice == 1:
+                result[2] += 1
+                result[3] += 1
+                result[4] = 1
+                result[5] = 1
+                return result
+            else:
+                result[0] -= 45
+                return result
+# Room 2 Function: Danville Park
+# Checks if the room has been visited.
+# If Perry already has the keycard, only option is to leave.
+# If Perry has high enough stats, this leads to stealing the card without fighting.
+# Otherwise, combat with Norm occurs (combat function called).
+# After fight, if Perry wins, this causes the keycard to be added to gadgets list.
+# Room marked as visited.
+def room_2(stealth,*gadget,**visited): 
+#result = [health,gadget] 
+    result = [0]
+    if 'room 2' in visited.keys() and 'keycard' in gadget:
+        return "You've already been here. You have to leave."   
+    else:
+        choice = input("You are in Danville Park. The goal is to get the keycard from Norm bot so you can enter Doofenshmirz Evil Inc. You can either sneak and steal it if you have at least 1 stealth point or you are going to have to fight Norm for it. Would you like to try and sneak past or would you like to fight directly. If the first input 1. If the second input 2. Input here:")
+        if choice == '1' and stealth >= 1:
+
+
+
+            
