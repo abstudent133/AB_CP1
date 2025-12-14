@@ -126,140 +126,292 @@
 # After mission ends, call play_again function to reset or exit.
 import random
 
+# ------------------- SETUP -------------------
+
 perry = {
-    "health":30,
-    "attack":5,
-    "strengh":0,
-    "agility":0,
-    "stealth":0
+    "health": 30,
+    "attack": 5,
+    "strength": 0,
+    "agility": 0,
+    "stealth": 0
 }
-doof = {
-    "health":40,
-    "attack":10,
-    "inator":{
-        "health":20
-    }
-}
-norm = {
-    "health":25,
-    "attack":5
-}
+
 gadgets = []
-visited = []
-defeated = []
-tri_state_area = ["Fletcher Backyard","Danville Park","City Hall","Subway Tunnels","Slushy Burger","Waste Recycling Plant","Water Tower","Alleyway Hideout","Doofenshmirz Evil Inc."]
+visited = set()
 
-def check_list(item,*arg):
-    if item in arg:
-        return True
+# ------------------- CORE FUNCTIONS -------------------
+
+def combat(player_health, strength, attack, enemy):
+    if enemy == "norm":
+        enemy_health, enemy_attack = 25, 5
+    elif enemy == "doof":
+        enemy_health, enemy_attack = 40, 10
+    elif enemy == "weakened doof":
+        enemy_health, enemy_attack = 30, 7
     else:
-        return False
+        return player_health, "enemy"
 
-def update_stats(name,change,**kwarg):
-    if name in kwarg.keys():
-        name = name + change
-        if name >= 0:
-            pass
+    while player_health > 0 and enemy_health > 0:
+        enemy_health -= attack + strength
+        if enemy_health <= 0:
+            return player_health, "player"
+        player_health -= enemy_attack
+
+    return player_health, "enemy"
+
+
+def pick_up_item(item):
+    if item not in gadgets:
+        gadgets.append(item)
+
+
+def health_change(change):
+    perry["health"] += change
+    perry["health"] = max(0, min(45, perry["health"]))
+
+# ------------------- ROOM FUNCTIONS -------------------
+
+def room_1():
+    # [health, stealth, strength, money]
+    result = [0, 0, 0, 0]
+
+    if "room1" in visited:
+        return result
+
+    choice = input("1 Leave | 2 Sneak for money | 3 Run for money: ")
+
+    if choice == "2":
+        result[1] = 1
+        result[3] = 1
+    elif choice == "3":
+        if perry["strength"] > 0 or random.randint(1, 2) == 1:
+            result[2] = 1
+            result[3] = 1
         else:
-            name = 0
-        return name
+            result[0] = -15
+
+    visited.add("room1")
+    return result
+
+
+def room_2():
+    # [health_change, keycard]
+    result = [0, 0]
+
+    if "room2" in visited:
+        return result
+
+    choice = input("1 Sneak | 2 Fight Norm: ")
+
+    if choice == "1" and perry["stealth"] > 0:
+        result[1] = 1
     else:
-        return "The item you want to change isn't in the dictionary."
+        new_health, winner = combat(
+            perry["health"],
+            perry["strength"],
+            perry["attack"],
+            "norm"
+        )
+        result[0] = new_health - perry["health"]
+        if winner == "player":
+            result[1] = 1
 
-def update_health(health,change):
-    health = health + change
-    if health > 45:
-        health = 45
-    elif health < 0:
-        health = 0
-    return health
+    visited.add("room2")
+    return result
 
-def combat(p_health,enemy_health,attack,enemy_attack):
-    winner = ""
-    turn = "perry"
-    while p_health > 0 and enemy_health > 0:
-        if turn == "perry":
-            enemy_health -= attack
-        elif turn == "enemy":
-            p_health -= enemy_attack
-    if p_health <= 0:
-        winner = "enemy"
-    elif enemy_health <= 0:
-        winner = "perry" 
-    return winner
 
-def pick_up_item(item,attack,*gadget):
-    if item in gadget:
-        in_list = True
-        return in_list
-    else:
-        gadget.append(item)
-        attack += 1
-        return gadget and attack
+def room_3():
+    # [agility, jammer]
+    result = [0, 0]
 
-def room_choice(*gadget):
-    if 'flashlight' in gadget:
-        choice = input(f"You have a choice of any of the nine rooms including {tri_state_area}. What is your choice: ")
-        choice = choice.lower().strip()
-    else:
-        choice = input("You have a choice of 7 of the nine rooms including the Fletcher Yard, Danville, City Hall, Slushy Burger, Waste Recycling Plant, Water Tower, Alleyway Hideout. What is your choice: ")
-        choice = choice.lower().strip()
-    return choice
+    if "room3" in visited:
+        return result
 
-def play_again():
-    choice = input("Would you like to play again? If yes put 1, if no put 2. Input here: ")
-    if choice == "1":
-        play = True
-    else:
-        play = False
-    return play
+    result[0] = 1
+    result[1] = 1
+    visited.add("room3")
+    return result
 
-def room_1(strength,*gadget,**visited):
-#result = [health,stealth,strength,attack]
-    result = [0,0,0,0,0,0]
-    if "room 1" in visited.keys() and 'money' in gadget:
-        return "You have already been in this room. You have to leave."
-    else:
-        choice = input("You have the choice to get the money from the Fletchers. This item may be used in a later room. If you choose to take the money you can either run and get it and gain a strength point and 1 to your attack but there is a 50 percent chance that you get caught unless you already have a strength point or you could sneak and gain a stealth point. If you would like to just leave this room input 1. If you would like to use stealth to get the money input 2 and if you would like to run for the money input 3. Please input your choice here: ")
-        if choice == "1":
-            return result
-        elif choice == "2":
-            result[1] += 1
-            result[4] = 1
-            result[5] = 1
-            return result
-        elif choice == "3" and strength >= 1:
-            result[2] += 1
-            result[3] += 1
-            result[5] = 1
-            return result
-        elif choice == "3" and strength < 1:
-            dice = random.randint(1,2)
-            if dice == 1:
-                result[2] += 1
-                result[3] += 1
-                result[4] = 1
-                result[5] = 1
-                return result
-            else:
-                result[0] -= 45
-                return result
-# Room 2 Function: Danville Park
-# Checks if the room has been visited.
-# If Perry already has the keycard, only option is to leave.
-# If Perry has high enough stats, this leads to stealing the card without fighting.
-# Otherwise, combat with Norm occurs (combat function called).
-# After fight, if Perry wins, this causes the keycard to be added to gadgets list.
-# Room marked as visited.
-def room_2(stealth,*gadget,**visited): 
-#result = [health,gadget] 
+
+def room_4():
+    # [access]
     result = [0]
-    if 'room 2' in visited.keys() and 'keycard' in gadget:
-        return "You've already been here. You have to leave."   
-    else:
-        choice = input("You are in Danville Park. The goal is to get the keycard from Norm bot so you can enter Doofenshmirz Evil Inc. You can either sneak and steal it if you have at least 1 stealth point or you are going to have to fight Norm for it. Would you like to try and sneak past or would you like to fight directly. If the first input 1. If the second input 2. Input here:")
-        if choice == '1' and stealth >= 1:
+
+    if "room4" in visited:
+        return result
+
+    if "flashlight" not in gadgets:
+        return result
+
+    result[0] = 1
+    visited.add("room4")
+    return result
 
 
-s
-            
+def room_5():
+    # [health, flashlight]
+    result = [0, 0]
+
+    if "room5" in visited:
+        return result
+
+    choice = input("1 Eat | 2 Steal flashlight: ")
+
+    if choice == "1" and "money" in gadgets:
+        result[0] = 15
+    elif choice == "2" and perry["stealth"] > 0:
+        result[1] = 1
+
+    visited.add("room5")
+    return result
+
+
+def room_6():
+    # [hideout id]
+    result = [0]
+
+    if "room6" in visited:
+        return result
+
+    if perry["strength"] > 0:
+        result[0] = 1
+
+    visited.add("room6")
+    return result
+
+
+def room_7():
+    # [inator weakened]
+    result = [0]
+
+    if "room7" in visited:
+        return result
+
+    if "signal jammer" in gadgets and perry["agility"] > 0:
+        result[0] = 1
+
+    visited.add("room7")
+    return result
+
+
+def room_8():
+    # [translator]
+    result = [0]
+
+    if "room8" in visited:
+        return result
+
+    if "hideout id" in gadgets:
+        result[0] = 1
+
+    visited.add("room8")
+    return result
+
+
+def room_9():
+    # [health_change, victory]
+    result = [0, 0]
+
+    if "keycard" not in gadgets:
+        print("You can't enter Evil Inc without tunnel access.")
+        return result
+
+    enemy = "weakened doof" if "inator weakened" in gadgets else "doof"
+    new_health, winner = combat(
+        perry["health"],
+        perry["strength"],
+        perry["attack"],
+        enemy
+    )
+    result[0] = new_health - perry["health"]
+
+    if winner == "player":
+        result[1] = 1
+
+    return result
+
+
+print("""
+MISSION BRIEFING:
+Dr. Doofenshmirtz is attempting to control every pet in the Tri-State Area.
+You are Agent P — Perry the Platypus.
+Explore locations, gather gadgets, improve your stats,
+and stop Doof before it's too late.
+""")
+
+while True:
+    print("STATS")
+    print(perry)
+    print("Gadgets:", gadgets)
+
+    choice = input("Choose a room (1–9): ")
+
+    if choice == "1":
+        print("ROOM 1 — Fletcher Yard:")
+        print("Objective: You can either leave, sneak to steal money to gain stealth, or run to grab money to increase strength.")
+        r = room_1()
+        health_change(r[0])
+        perry["stealth"] += r[1]
+        perry["strength"] += r[2]
+        if r[3]: pick_up_item("money")
+
+    elif choice == "2":
+        print("ROOM 2 — Danville Park:")
+        print("Objective: Retrieve the keycard guarded by Norm-bot. You can sneak past if stealth is high or fight Norm-bot in combat.")
+        r = room_2()
+        health_change(r[0])
+        if r[1]: pick_up_item("keycard")
+
+    elif choice == "3":
+        print("ROOM 3 — City Hall:")
+        print("Objective: Hack the systems to gain agility and acquire the signal jammer.")
+        r = room_3()
+        perry["agility"] += r[0]
+        if r[1]: pick_up_item("signal jammer")
+
+    elif choice == "4":
+        print("ROOM 4 — Subway Tunnels:")
+        print("Objective: Explore the tunnels. Access is only possible if you have a flashlight.")
+        r = room_4()
+        if r[0]: pick_up_item("evil inc access")
+
+    elif choice == "5":
+        print("ROOM 5 — Slushy Burger:")
+        print("Objective: Recover health by eating or steal a flashlight if stealth is sufficient.")
+        r = room_5()
+        health_change(r[0])
+        if r[1]: pick_up_item("flashlight")
+
+    elif choice == "6":
+        print("ROOM 6 — Waste Recycling Plant:")
+        print("Objective: Obtain hideout credentials. Strength may be required.")
+        r = room_6()
+        if r[0]: pick_up_item("hideout id")
+
+    elif choice == "7":
+        print("ROOM 7 — Water Tower:")
+        print("Objective: Disable Doof’s Inator using the signal jammer and agility.")
+        r = room_7()
+        if r[0]: pick_up_item("inator weakened")
+
+    elif choice == "8":
+        print("ROOM 8 — Alleyway Hideout:")
+        print("Objective: Retrieve the platypus translator. Access is only possible with the hideout ID.")
+        r = room_8()
+        if r[0]: pick_up_item("translator")
+
+    elif choice == "9":
+        print("ROOM 9 — Doofenshmirtz Evil Inc.:")
+        print("Objective: Defeat Dr. Doofenshmirtz and stop his plan. You need sufficient stats and gadgets from previous rooms.")
+        r = room_9()
+        health_change(r[0])
+        if r[1]:
+            print("MISSION SUCCESS! The Tri-State Area is safe.")
+            break
+
+        else:
+            print("Invalid choice. Please enter a number from 1 to 9.")
+
+        if perry["health"] <= 0:
+            print("MISSION FAILED. Perry has fallen.")
+            break
