@@ -126,7 +126,6 @@
 # After mission ends, call play_again function to reset or exit.
 import random
 
-# ------------------- SETUP -------------------
 
 perry = {
     "health": 30,
@@ -139,7 +138,6 @@ perry = {
 gadgets = []
 visited = set()
 
-# ------------------- CORE FUNCTIONS -------------------
 
 def combat(player_health, strength, attack, enemy):
     if enemy == "norm":
@@ -168,8 +166,6 @@ def pick_up_item(item):
 def health_change(change):
     perry["health"] += change
     perry["health"] = max(0, min(45, perry["health"]))
-
-# ------------------- ROOM FUNCTIONS -------------------
 
 def room_1():
     # [health, stealth, strength, money]
@@ -344,7 +340,7 @@ while True:
     print(perry)
     print("Gadgets:", gadgets)
 
-    choice = input("Choose a room (1–9): ")
+    choice = input("Choose a room (1-9): ")
 
     if choice == "1":
         print("ROOM 1 — Fletcher Yard:")
