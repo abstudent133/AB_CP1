@@ -154,6 +154,7 @@ def combat(player_health, strength, attack, enemy):
         if enemy_health <= 0:
             return player_health, "player"
         player_health -= enemy_attack
+        
 
     return player_health, "enemy"
 
